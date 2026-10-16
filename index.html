@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ur-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hisaab Khata</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0F5A44">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF2EF;--card:#fff;--ink:#14231D;--mute:#667a71;--line:#D9E2DC;--pri:#0F5A44;--onpri:#fff;--in:#0F7A4F;--out:#B3372B;--ud:#B7790F;--chip:#E4ECE7;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1713;--card:#16241D;--ink:#E6F0EA;--mute:#8FA69B;--line:#27382F;--pri:#3DBB8A;--onpri:#08130E;--in:#4CCB93;--out:#F0776B;--ud:#E9B04A;--chip:#1E3128}}
+:root[data-theme="dark"]{--bg:#0E1713;--card:#16241D;--ink:#E6F0EA;--mute:#8FA69B;--line:#27382F;--pri:#3DBB8A;--onpri:#08130E;--in:#4CCB93;--out:#F0776B;--ud:#E9B04A;--chip:#1E3128}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+:root[data-theme="blue"]{--bg:#EBF1F8;--card:#fff;--ink:#12202E;--mute:#617488;--line:#D6E0EB;--pri:#1D4F91;--onpri:#fff;--in:#0F7A4F;--out:#B3372B;--ud:#B7790F;--chip:#E1EAF4}
+:root[data-theme="orange"]{--bg:#F7EFE9;--card:#fff;--ink:#2A1B12;--mute:#7C6657;--line:#E8DACE;--pri:#B84A12;--onpri:#fff;--in:#0F7A4F;--out:#B3372B;--ud:#8A6A0F;--chip:#F1E4D9}
+:root[data-theme="purple"]{--bg:#F1EEF8;--card:#fff;--ink:#1D1630;--mute:#6E6585;--line:#DED8EE;--pri:#5B3FA8;--onpri:#fff;--in:#0F7A4F;--out:#B3372B;--ud:#B7790F;--chip:#E7E1F4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 'Plus Jakarta Sans',system-ui,sans-serif;padding-bottom:84px}
+.wrap{max-width:560px;margin:0 auto;padding:16px}
+h1,h2{font-family:Fraunces,Georgia,serif;margin:0}
+h1{font-size:24px}h2{font-size:18px;margin:20px 0 10px}
+.num{font-family:Fraunces,Georgia,serif;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.hero{background:var(--pri);color:var(--onpri);border-radius:18px;padding:18px;margin:14px 0}
+.hero small{opacity:.8}.hero .big{font-size:34px;margin-top:2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid .card small{color:var(--mute);display:block}
+.grid .card .num{font-size:20px}
+.in{color:var(--in)}.out{color:var(--out)}.ud{color:var(--ud)}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}.row .l{min-width:0}.row .l b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .l span{color:var(--mute);font-size:13px}
+.row.tap{cursor:pointer}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;border:0;color:var(--mute);padding:12px 4px;font:600 13px inherit;font-family:inherit;cursor:pointer}
+nav button.on{color:var(--pri);box-shadow:inset 0 3px 0 var(--pri)}
+button,input,select,textarea{font:inherit;color:inherit}
+.btn{background:var(--pri);color:var(--onpri);border:0;border-radius:10px;padding:11px 14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+.btn.alt{background:var(--chip);color:var(--ink)}
+.btn.wa{background:#1FA855;color:#fff}
+.btn.bad{background:transparent;color:var(--out);padding:6px 8px}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,nav button:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px;margin-top:6px}
+label{display:block;margin-top:12px;font-weight:500;font-size:14px}
+.seg{display:flex;gap:6px;margin-top:6px}
+.seg button{flex:1;border:1px solid var(--line);background:var(--bg);padding:10px;border-radius:10px;font-weight:600;cursor:pointer}
+.seg button.on.i{background:var(--in);color:#fff;border-color:var(--in)}
+.seg button.on.o{background:var(--out);color:#fff;border-color:var(--out)}
+.seg button.on.u{background:var(--ud);color:#fff;border-color:var(--ud)}
+.seg button.on.w{background:var(--in);color:#fff;border-color:var(--in)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.empty{color:var(--mute);text-align:center;padding:22px 8px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.chips button{border:0;background:var(--chip);padding:7px 12px;border-radius:99px;cursor:pointer;font-weight:500}
+.chips button.on{background:var(--pri);color:var(--onpri)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.sheet{background:var(--card);width:100%;max-width:560px;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:90%;overflow:auto}
+.back{background:none;border:0;color:var(--pri);font-weight:600;cursor:pointer;padding:0 0 8px}
+.hint{color:var(--mute);font-size:13px;margin-top:6px}
+.tab{overflow-x:auto}
+.credit{text-align:center;color:var(--mute);font-size:13px;margin:26px 0 6px}.credit a{color:var(--pri);font-weight:600;text-decoration:none}
+@media print{.wrap,nav,.noprint{display:none!important}.modal{position:static;background:none;display:block}.sheet{max-width:none;max-height:none;overflow:visible;padding:0;background:#fff;color:#000}body{background:#fff;color:#000}.in,.out,.ud,.hint{color:#000!important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<nav id="nav"></nav>
+<div id="modal"></div>
+<script>
+var KEY='hisaab-khata-v1',S={tx:[],cust:[],tpl:"Assalam-o-Alaikum {name}! Aap ka Rs. {amount} ka qarz baqi hai, barah-e-karam ada kar dein. Shukriya.",cc:'92',biz:null};
+try{var r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
+var view='home',openId=null,fType='all',tmpLogo='',editB=false;
+var CATS={in:['Sales','Salary','Other income'],out:['Bills','Shopping','Rent','Stock','Other']};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function rs(n){return 'Rs. '+Math.round(n).toLocaleString('en-PK')}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function bal(c){return c.txs.reduce(function(a,t){return a+(t.type==='wapas'?-t.amt:t.amt)},0)}
+function sum(t){return S.tx.filter(function(x){return x.type===t}).reduce(function(a,x){return a+x.amt},0)}
+function waLink(c){var p=(c.phone||'').replace(/\D/g,'');if(p.indexOf('00')===0)p=p.slice(2);else if(p.charAt(0)==='0')p=S.cc+p.slice(1);
+var m=S.tpl.replace(/\{name\}/g,c.name).replace(/\{amount\}/g,Math.round(bal(c)).toLocaleString('en-PK'));
+return 'https://wa.me/'+p+'?text='+encodeURIComponent(m)}
+function shortDate(d){var a=d.split('-');return a[2]+'/'+a[1]+'/'+a[0]}
+
+function render(){
+ if(!S.biz||!S.biz.name||editB){document.getElementById('nav').innerHTML='';document.getElementById('app').innerHTML=setupHtml();return}
+ var h='';
+ if(view==='home')h=home();else if(view==='hisaab')h=hisaab();else if(view==='khata')h=openId?detail():khata();else h=settings();
+ document.getElementById('app').innerHTML=brand()+h+footer();
+ var tabs=[['home','Dashboard'],['hisaab','Hisaab'],['khata','Udhaar Khata'],['set','Settings']];
+ document.getElementById('nav').innerHTML=tabs.map(function(t){return '<button class="'+(view===t[0]?'on':'')+'" onclick="go(\''+t[0]+'\')">'+t[1]+'</button>'}).join('');
+}
+function go(v){view=v;openId=null;render();window.scrollTo(0,0)}
+
+function home(){
+ var i=sum('in'),o=sum('out'),u=S.cust.reduce(function(a,c){return a+Math.max(0,bal(c))},0);
+ var recent=S.tx.slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id.localeCompare(a.id)}).slice(0,5);
+ var owing=S.cust.filter(function(c){return bal(c)>0}).sort(function(a,b){return bal(b)-bal(a)}).slice(0,3);
+ return '<h1>Dashboard</h1>'+
+ '<div class="hero"><small>Market mein udhaar</small><div class="num big">'+rs(u)+'</div><small>'+S.cust.filter(function(c){return bal(c)>0}).length+' log ne paisa dena hai</small></div>'+
+ '<div class="grid"><div class="card"><small>Total Income</small><div class="num in">'+rs(i)+'</div></div><div class="card"><small>Total Expenses</small><div class="num out">'+rs(o)+'</div></div></div>'+
+ '<div class="card" style="margin-top:10px"><small style="color:var(--mute)">Bachat (Income − Expenses)</small><div class="num" style="font-size:20px;color:var(--'+(i>=o?'in':'out')+')">'+rs(i-o)+'</div></div>'+
+ '<h2>Sab se zyada udhaar</h2><div class="card">'+(owing.length?owing.map(function(c){return '<div class="row tap" onclick="openC(\''+c.id+'\')"><div class="l"><b>'+esc(c.name)+'</b><span>'+esc(c.phone)+'</span></div><b class="ud">'+rs(bal(c))+'</b></div>'}).join(''):'<div class="empty">Abhi koi udhaar nahi.</div>')+'</div>'+
+ '<h2>Haal ki entries</h2><div class="card">'+(recent.length?recent.map(txRow).join(''):'<div class="empty">Hisaab tab se pehli entry daalein.</div>')+'</div>';
+}
+function txRow(t){return '<div class="row"><div class="l"><b>'+esc(t.cat)+'</b><span>'+shortDate(t.date)+(t.note?' · '+esc(t.note):'')+'</span></div><b class="'+(t.type==='in'?'in':'out')+'">'+(t.type==='in'?'+':'−')+rs(t.amt)+'</b></div>'}
+
+function hisaab(){
+ var l=S.tx.filter(function(t){return fType==='all'||t.type===fType}).sort(function(a,b){return b.date.localeCompare(a.date)||b.id.localeCompare(a.id)});
+ return '<div class="top"><h1>Hisaab</h1><button class="btn" onclick="txForm()">+ Nayi entry</button></div>'+
+ '<div class="chips" style="margin-top:14px">'+[['all','Sab'],['in','Income'],['out','Expense']].map(function(f){return '<button class="'+(fType===f[0]?'on':'')+'" onclick="fType=\''+f[0]+'\';render()">'+f[1]+'</button>'}).join('')+'</div>'+
+ '<div class="card">'+(l.length?l.map(function(t){return '<div class="row"><div class="l"><b>'+esc(t.cat)+'</b><span>'+shortDate(t.date)+(t.note?' · '+esc(t.note):'')+'</span></div><div style="text-align:right"><b class="'+(t.type==='in'?'in':'out')+'">'+(t.type==='in'?'+':'−')+rs(t.amt)+'</b><br><button class="btn bad" onclick="delTx(\''+t.id+'\')">Hatayein</button></div></div>'}).join(''):'<div class="empty">Koi entry nahi. "Nayi entry" dabayein.</div>')+'</div>';
+}
+var tf={type:'in'};
+function txForm(){
+ tf={type:'in'};
+ modal('<h2 style="margin-top:0">Nayi entry</h2><div class="seg"><button id="bi" class="on i" onclick="setT(\'in\')">Income</button><button id="bo" class="o" onclick="setT(\'out\')">Expense</button></div>'+
+ '<label>Category<select id="f_cat"></select></label><label>Raqam (Rs.)<input id="f_amt" type="number" inputmode="decimal" min="0"></label><label>Tareekh<input id="f_date" type="date" value="'+today()+'"></label><label>Note (optional)<input id="f_note"></label>'+
+ '<div style="display:flex;gap:8px;margin-top:16px"><button class="btn alt" onclick="closeM()">Cancel</button><button class="btn" style="flex:1" onclick="saveTx()">Save karein</button></div>');
+ fillCats();
+}
+function fillCats(){document.getElementById('f_cat').innerHTML=CATS[tf.type].map(function(c){return '<option>'+c+'</option>'}).join('')}
+function setT(t){tf.type=t;document.getElementById('bi').className=t==='in'?'on i':'';document.getElementById('bo').className=t==='out'?'on o':'';fillCats()}
+function saveTx(){var a=parseFloat(document.getElementById('f_amt').value);if(!(a>0)){document.getElementById('f_amt').focus();return}
+ S.tx.push({id:uid(),type:tf.type,cat:document.getElementById('f_cat').value,amt:a,date:document.getElementById('f_date').value||today(),note:document.getElementById('f_note').value.trim()});save();closeM();render()}
+function delTx(id){if(confirm('Ye entry hata dein?')){S.tx=S.tx.filter(function(t){return t.id!==id});save();render()}}
+
+function khata(){
+ var tot=S.cust.reduce(function(a,c){return a+Math.max(0,bal(c))},0);
+ return '<div class="top"><h1>Udhaar Khata</h1><button class="btn" onclick="custForm()">+ Naya customer</button></div>'+
+ '<div class="card" style="margin:14px 0"><small style="color:var(--mute)">Kul baqi udhaar</small><div class="num ud" style="font-size:22px">'+rs(tot)+'</div></div>'+
+ '<div class="card">'+(S.cust.length?S.cust.slice().sort(function(a,b){return bal(b)-bal(a)}).map(function(c){var b=bal(c);return '<div class="row tap" onclick="openC(\''+c.id+'\')"><div class="l"><b>'+esc(c.name)+'</b><span>'+esc(c.phone)+'</span></div><div style="text-align:right"><b class="'+(b>0?'ud':b<0?'in':'')+'">'+rs(Math.abs(b))+'</b><br><span style="font-size:12px;color:var(--mute)">'+(b>0?'dena hai':b<0?'aap ne dena hai':'barabar')+'</span></div></div>'}).join(''):'<div class="empty">Abhi koi customer nahi. Pehla customer add karein.</div>')+'</div>';
+}
+function openC(id){view='khata';openId=id;render();window.scrollTo(0,0)}
+function custForm(){
+ modal('<h2 style="margin-top:0">Naya customer</h2><label>Naam<input id="c_name"></label><label>WhatsApp number<input id="c_phone" type="tel" inputmode="tel" placeholder="0300 1234567"></label><div class="hint">0300... ya +92300... dono chalenge.</div>'+
+ '<div style="display:flex;gap:8px;margin-top:16px"><button class="btn alt" onclick="closeM()">Cancel</button><button class="btn" style="flex:1" onclick="saveCust()">Save karein</button></div>');
+}
+function saveCust(){var n=document.getElementById('c_name').value.trim();if(!n){document.getElementById('c_name').focus();return}
+ var c={id:uid(),name:n,phone:document.getElementById('c_phone').value.trim(),txs:[]};S.cust.push(c);save();closeM();openC(c.id)}
+function detail(){
+ var c=S.cust.find(function(x){return x.id===openId});if(!c){openId=null;return khata()}
+ var b=bal(c),hist=c.txs.slice().sort(function(a,b){return b.date.localeCompare(a.date)||b.id.localeCompare(a.id)});
+ return '<button class="back" onclick="openId=null;render()">← Sab customers</button>'+
+ '<div class="card"><div class="top"><div><h1 style="font-size:21px">'+esc(c.name)+'</h1><span style="color:var(--mute)">'+esc(c.phone||'Number nahi')+'</span></div><button class="btn bad" onclick="delC(\''+c.id+'\')">Hatayein</button></div>'+
+ '<div style="margin-top:12px;color:var(--mute)">'+(b>0?'Is ne dena hai':b<0?'Aap ne dena hai':'Hisaab barabar')+'</div><div class="num '+(b>0?'ud':'in')+'" style="font-size:30px">'+rs(Math.abs(b))+'</div></div>'+
+ '<button class="btn" style="display:block;width:100%;margin-top:10px" onclick="ctxForm(\''+c.id+'\',\'kaam\')">+ Kaam add karein (bill ke liye)</button><div class="grid" style="margin-top:10px"><button class="btn alt" onclick="ctxForm(\''+c.id+'\',\'diya\')">Udhaar diya</button><button class="btn alt" onclick="ctxForm(\''+c.id+'\',\'wapas\')">Paisa wapas mila</button></div>'+
+ (c.txs.length?'<button class="btn alt" style="display:block;width:100%;margin-top:10px" onclick="billView(\''+c.id+'\')">Bill banayein / dekhein</button>':'')+(b>0&&c.phone?'<a class="btn wa" style="display:block;margin-top:10px" target="_blank" rel="noopener" href="'+waLink(c)+'">WhatsApp par yaad dehani bhejein</a>':(b>0?'<div class="hint">WhatsApp reminder ke liye phone number daalna zaroori hai.</div>':''))+
+ '<h2>Transaction history</h2><div class="card">'+(hist.length?hist.map(function(t){return '<div class="row"><div class="l"><b>'+esc(tLabel(t))+'</b><span>'+shortDate(t.date)+(t.note?' · '+esc(t.note):'')+'</span></div><div style="text-align:right"><b class="'+(t.type==='wapas'?'in':'ud')+'">'+(t.type==='wapas'?'−':'+')+rs(t.amt)+'</b><br><button class="btn bad" onclick="delCT(\''+c.id+'\',\''+t.id+'\')">Hatayein</button></div></div>'}).join(''):'<div class="empty">Abhi koi lena dena nahi.</div>')+'</div>';
+}
+function tLabel(t){return t.type==='kaam'?(t.desc||'Kaam'):t.type==='diya'?'Udhaar diya'+(t.desc?': '+t.desc:''):'Paisa wapas mila'}
+function billParts(c){var f=function(a,b){return a.date.localeCompare(b.date)||a.id.localeCompare(b.id)},w=c.txs.filter(function(t){return t.type!=='wapas'}).sort(f),p=c.txs.filter(function(t){return t.type==='wapas'}).sort(f),s=function(l){return l.reduce(function(a,t){return a+t.amt},0)};return{w:w,p:p,tw:s(w),tp:s(p),b:s(w)-s(p)}}
+function n(x){return Math.round(x).toLocaleString('en-PK')}
+function billText(c){var d=billParts(c),t='*'+S.biz.name+'*\nContact: '+S.biz.phone+'\n\n*BILL - '+c.name+'*\nTareekh: '+shortDate(today())+'\n\n*Kaam ki tafseel:*\n';
+ d.w.forEach(function(x,i){t+=(i+1)+'. '+tLabel(x)+' ('+shortDate(x.date)+') - Rs. '+n(x.amt)+'\n'});
+ t+='Kul bill: Rs. '+n(d.tw)+'\n\n*Adaygi:*\n';
+ if(!d.p.length)t+='Abhi koi adaygi nahi\n';d.p.forEach(function(x,i){t+=(i+1)+'. '+shortDate(x.date)+' - Rs. '+n(x.amt)+(x.note?' ('+x.note+')':'')+'\n'});
+ t+='Kul adaygi: Rs. '+n(d.tp)+'\n\n*'+(d.b>0?'Baqaya: Rs. '+n(d.b):d.b<0?'Zyada ada: Rs. '+n(-d.b):'Hisaab barabar')+'*\nShukriya!';return t}
+function billView(id){var c=S.cust.find(function(x){return x.id===id}),d=billParts(c);
+ var wr=function(l,lab){return l.length?l.map(function(t){return '<div class="row"><div class="l"><b style="white-space:normal">'+esc(lab(t))+'</b><span>'+shortDate(t.date)+(t.note?' · '+esc(t.note):'')+'</span></div><b>'+rs(t.amt)+'</b></div>'}).join(''):'<div class="hint">Koi entry nahi.</div>'};
+ var p=(c.phone||'').replace(/\D/g,'');if(p.indexOf('00')===0)p=p.slice(2);else if(p.charAt(0)==='0')p=S.cc+p.slice(1);
+ modal('<div id="bill">'+brand(true)+'<h2 style="margin-top:0">Bill</h2><b>'+esc(c.name)+'</b><div class="hint" style="margin:0">'+esc(c.phone)+' · '+shortDate(today())+'</div>'+
+ '<h2>Kaam ki tafseel</h2>'+wr(d.w,tLabel)+'<div class="row"><b>Kul bill</b><b>'+rs(d.tw)+'</b></div>'+
+ '<h2>Adaygi (mili hui raqam)</h2>'+wr(d.p,function(){return 'Adaygi'})+'<div class="row"><b>Kul adaygi</b><b class="in">'+rs(d.tp)+'</b></div>'+
+ '<div class="card" style="margin-top:14px;text-align:center"><small style="color:var(--mute)">'+(d.b>0?'Baqaya raqam':d.b<0?'Zyada ada hui':'Hisaab')+'</small><div class="num '+(d.b>0?'out':'in')+'" style="font-size:28px">'+(d.b===0?'Barabar':rs(Math.abs(d.b)))+'</div></div></div>'+
+ '<div class="noprint" style="display:grid;gap:8px;margin-top:16px"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/'+p+'?text='+encodeURIComponent(billText(c))+'">WhatsApp par bill bhejein</a><div class="grid"><button class="btn alt" onclick="window.print()">Print / PDF</button><button class="btn alt" onclick="closeM()">Band karein</button></div></div>')}
+function ctxForm(id,type){
+ modal('<h2 style="margin-top:0">'+(type==='kaam'?'Kaam add karein':type==='diya'?'Udhaar diya':'Paisa wapas mila')+'</h2>'+(type==='kaam'?'<div class="chips" style="margin-top:10px">'+['Composing','Designing','Printing','Binding'].map(function(x){return '<button onclick="document.getElementById(\'t_desc\').value=\''+x+'\'">'+x+'</button>'}).join('')+'</div><label>Kaam ki tafseel<input id="t_desc" placeholder="maslan: Composing 20 pages"></label>':'')+'<label>Raqam (Rs.)<input id="t_amt" type="number" inputmode="decimal" min="0"></label><label>Tareekh<input id="t_date" type="date" value="'+today()+'"></label><label>Note (optional)<input id="t_note"></label>'+
+ '<div style="display:flex;gap:8px;margin-top:16px"><button class="btn alt" onclick="closeM()">Cancel</button><button class="btn" style="flex:1" onclick="saveCT(\''+id+'\',\''+type+'\')">Save karein</button></div>');
+}
+function saveCT(id,type){var a=parseFloat(document.getElementById('t_amt').value);if(!(a>0)){document.getElementById('t_amt').focus();return}
+ var c=S.cust.find(function(x){return x.id===id});c.txs.push({id:uid(),type:type,desc:(document.getElementById('t_desc')?document.getElementById('t_desc').value.trim():''),amt:a,date:document.getElementById('t_date').value||today(),note:document.getElementById('t_note').value.trim()});save();closeM();render()}
+function delCT(cid,tid){if(confirm('Ye lena dena hata dein?')){var c=S.cust.find(function(x){return x.id===cid});c.txs=c.txs.filter(function(t){return t.id!==tid});save();render()}}
+function delC(id){if(confirm('Customer aur uski poori history hata dein?')){S.cust=S.cust.filter(function(c){return c.id!==id});openId=null;save();render()}}
+
+function settings(){
+ var ex=S.cust.find(function(c){return bal(c)>0})||{name:'Ahmed',phone:'',txs:[{type:'diya',amt:5000}]};
+ var pv=S.tpl.replace(/\{name\}/g,ex.name).replace(/\{amount\}/g,Math.round(bal(ex)).toLocaleString('en-PK'));
+ return '<h1>Settings</h1><h2>Business ki maloomat</h2><div class="card"><div class="hint" style="margin:0 0 10px">'+esc(S.biz.name)+' · '+esc(S.biz.phone)+'</div><button class="btn alt" onclick="editBiz()">Naam, logo ya number badlein</button></div><h2>WhatsApp message</h2><div class="card"><label style="margin-top:0">Reminder ka message<textarea id="s_tpl" rows="4" oninput="tplLive()">'+esc(S.tpl)+'</textarea></label><div class="hint">{name} aur {amount} khud badal jayenge.</div>'+
+ '<label>Preview</label><div class="card" style="background:var(--bg);margin-top:6px" id="s_pv">'+esc(pv)+'</div>'+
+ '<label>Country code (0 se shuru hone wale numbers ke liye)<input id="s_cc" inputmode="numeric" value="'+esc(S.cc)+'" oninput="tplLive()"></label></div>'+
+ '<h2>Automatic messages (Cloud API)</h2><div class="card"><div class="hint" style="margin:0">Ye app sirf browser mein chalti hai, isliye WhatsApp Cloud API se khud-ba-khud bhejna yahan mumkin nahi. Is ke liye aik chhota server (backend) chahiye jo Meta ka token mehfooz rakhe. Abhi "WhatsApp par bhejein" button chalta hai.</div></div>'+
+ '<h2>Data</h2><div class="card"><div class="hint" style="margin:0 0 10px">Data sirf is phone/browser mein mehfooz hai. Browser data saaf karne se mit sakta hai, isliye backup lete rahein.</div><button class="btn alt" onclick="backup()">Backup copy karein</button> <button class="btn alt" onclick="restore()">Backup wapas laayein</button></div>';
+}
+function tplLive(){S.tpl=document.getElementById('s_tpl').value;S.cc=(document.getElementById('s_cc').value.replace(/\D/g,''))||'92';save();
+ var ex=S.cust.find(function(c){return bal(c)>0})||{name:'Ahmed',txs:[{type:'diya',amt:5000}]};
+ document.getElementById('s_pv').textContent=S.tpl.replace(/\{name\}/g,ex.name).replace(/\{amount\}/g,Math.round(bal(ex)).toLocaleString('en-PK'))}
+function backup(){var j=JSON.stringify(S);modal('<h2 style="margin-top:0">Backup</h2><div class="hint">Ye text copy karke kahin mehfooz kar lein.</div><textarea id="bk" rows="6" readonly>'+esc(j)+'</textarea><div style="display:flex;gap:8px;margin-top:14px"><button class="btn alt" onclick="closeM()">Band karein</button><button class="btn" style="flex:1" onclick="var t=document.getElementById(\'bk\');t.select();try{document.execCommand(\'copy\')}catch(e){}">Copy</button></div>')}
+function restore(){modal('<h2 style="margin-top:0">Backup wapas laayein</h2><div class="hint">Mojooda data replace ho jayega.</div><textarea id="bk" rows="6" placeholder="Backup text yahan paste karein"></textarea><div style="display:flex;gap:8px;margin-top:14px"><button class="btn alt" onclick="closeM()">Cancel</button><button class="btn" style="flex:1" onclick="doRestore()">Wapas laayein</button></div>')}
+function doRestore(){try{var d=JSON.parse(document.getElementById('bk').value);if(!d||!Array.isArray(d.tx)||!Array.isArray(d.cust))throw 0;S=Object.assign(S,d);save();closeM();render()}catch(e){alert('Ye backup sahi nahi hai.')}}
+
+function footer(){return '<div class="credit">Made by Ihsan · <a href="tel:03088052545">03088052545</a></div>'}
+function brand(big){var b=S.biz||{},z=big?64:42,lg=b.logo?'<img src="'+b.logo+'" alt="" style="width:'+z+'px;height:'+z+'px;border-radius:10px;object-fit:cover">':'<div style="width:'+z+'px;height:'+z+'px;border-radius:10px;background:var(--pri);color:var(--onpri);display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;font-weight:700;font-size:'+(z/2)+'px">'+esc((b.name||'?').charAt(0).toUpperCase())+'</div>';
+ return '<div style="display:flex;align-items:center;gap:12px;'+(big?'flex-direction:column;text-align:center;border-bottom:2px solid var(--line);padding-bottom:12px;margin-bottom:6px':'margin-bottom:14px')+'">'+lg+'<div><div class="num" style="font-size:'+(big?20:17)+'px;line-height:1.2">'+esc(b.name)+'</div><div class="hint" style="margin:0">'+esc(b.phone)+'</div></div>'+(big?'':'<button class="btn alt" style="margin-left:auto;padding:8px 12px" onclick="themeForm()">Theme</button>')+'</div>'}
+function logoPrev(){return tmpLogo?'<img src="'+tmpLogo+'" alt="Logo" style="width:96px;height:96px;border-radius:14px;object-fit:cover">':'<div style="width:96px;height:96px;border-radius:14px;background:var(--chip);color:var(--mute);display:inline-flex;align-items:center;justify-content:center">Logo</div>'}
+function setupHtml(){var has=S.biz&&S.biz.name,b=S.biz||{};
+ return '<h1>'+(has?'Business ki maloomat':'Khush aamdeed!')+'</h1>'+(has?'':'<div class="hint" style="font-size:14px;margin:6px 0 14px">Shuru karne se pehle apne business ki maloomat daalein. Ye app aur har bill par nazar aayengi.</div>')+
+ '<div class="card" style="margin-top:14px;text-align:center"><div id="lgp">'+logoPrev()+'</div><input id="lgf" type="file" accept="image/*" style="display:none" onchange="pickLogo(this)"><div><button class="btn alt" style="margin-top:10px" onclick="openLogo()">Logo chunein</button></div><div class="hint">Logo zaroori nahi, baad mein bhi lag sakta hai.</div>'+
+ '<div style="text-align:left"><label>Business ka naam<input id="b_name" value="'+esc(b.name)+'" placeholder="maslan: Ihsan Composing Centre"></label><label>Contact number<input id="b_phone" type="tel" inputmode="tel" value="'+esc(b.phone)+'" placeholder="0300 1234567"></label></div>'+
+ '<div style="display:flex;gap:8px;margin-top:16px">'+(has?'<button class="btn alt" onclick="editB=false;render()">Cancel</button>':'')+'<button class="btn" style="flex:1" onclick="saveBiz()">'+(has?'Save karein':'Shuru karein')+'</button></div></div>'+footer()}
+function openLogo(){document.getElementById('lgf').click()}
+function editBiz(){tmpLogo=S.biz.logo||'';editB=true;render();window.scrollTo(0,0)}
+function pickLogo(i){var f=i.files&&i.files[0];if(!f)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,256/Math.max(im.width,im.height)),cv=document.createElement('canvas');cv.width=Math.round(im.width*k);cv.height=Math.round(im.height*k);cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);tmpLogo=cv.toDataURL('image/png');document.getElementById('lgp').innerHTML=logoPrev()};im.onerror=function(){alert('Ye tasveer khul nahi saki. Doosri tasveer chunein.')};im.src=r.result};r.readAsDataURL(f)}
+function saveBiz(){var n=document.getElementById('b_name').value.trim(),p=document.getElementById('b_phone').value.trim();if(!n){document.getElementById('b_name').focus();return}if(p.replace(/\D/g,'').length<10){alert('Sahi contact number daalein.');document.getElementById('b_phone').focus();return}S.biz={name:n,phone:p,logo:tmpLogo};save();editB=false;render()}
+function modal(h){document.getElementById('modal').innerHTML='<div class="modal" onclick="if(event.target===this)closeM()"><div class="sheet">'+h+'</div></div>'}
+function closeM(){document.getElementById('modal').innerHTML=''}
+var THEMES=[['','Zamurd (sabz)','#0F5A44'],['blue','Neela','#1D4F91'],['orange','Narangi','#B84A12'],['purple','Jamni','#5B3FA8'],['dark','Raat (dark)','#16241D']];
+function applyTheme(){var r=document.documentElement;if(S.theme)r.setAttribute('data-theme',S.theme);else r.removeAttribute('data-theme')}
+function setTheme(t){S.theme=t;save();applyTheme();closeM();render()}
+function themeForm(){modal('<h2 style="margin-top:0">Theme chunein</h2><div style="display:grid;gap:8px">'+THEMES.map(function(t){return '<button class="btn alt" style="display:flex;align-items:center;gap:12px;'+((S.theme||'')===t[0]?'outline:2px solid var(--pri)':'')+'" onclick="setTheme(\''+t[0]+'\')"><span style="width:26px;height:26px;border-radius:50%;background:'+t[2]+';display:inline-block"></span>'+t[1]+'</button>'}).join('')+'</div><button class="btn alt" style="width:100%;margin-top:12px" onclick="closeM()">Band karein</button>')}
+applyTheme();render();
+if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
+</script>
+</body>
+</html>
